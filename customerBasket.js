@@ -21,24 +21,76 @@ const products = [
     }
 ];
 
-class ProductsList extends React.Component {
+class ProductTableHeader extends React.Component {
     render() {
-        const ProductsListTemplate = this.props.data.map(function(item, index) {
-            return (
-                <div key = {item.id}>
-                  <p className="prodactName">{item.name}:</p>
-                  <p className="prodactPrice">{item.price}:</p>
-                  <p className="prodactCount">{item.count}:</p>
-                </div>
-            )
-        })
-
         return (
-          <div className="productList">
-              {ProductsListTemplate}
-          </div>
+            <tr>
+                <th className = "tableCell">Name</th>
+                <th className = "tableCell">Price</th>
+                <th className = "tableCell">Count</th>
+                <th className = "tableCell"></th>
+            </tr>
         )
     }
+}
+
+class Product extends React.Component {
+    render() {
+        const {id, name, price, count} = this.props.data;
+
+        return (
+            <tr>
+                <td className = "tableCell">{name}</td>
+                <td className = "tableCell">{price}</td>
+                <td className = "tableCell">{count}</td>
+                <th className = "tableCell">
+                    <button className = "button">+</button>
+                </th>
+            </tr>
+        )
+    }
+}
+
+Product.propTypes = {
+    data: PropTypes.shape({
+        name: PropTypes.string,
+        price: PropTypes.string,
+        count: PropTypes.string,
+    })
+}
+
+class ProductsList extends React.Component {
+    renderProductList = () => {
+        const { data } = this.props;
+        let ProductsListTemplate = null;
+
+        if (data.length) {
+            return ProductsListTemplate = this.props.data.map(function(item, index) {
+                return (
+                    <tbody key = {item.id}>
+                    <Product data = {item}/>
+                    </tbody>
+                )
+            })
+        } else {
+            return ProductsListTemplate = <p>Products is empty</p>
+        }
+    }
+
+    render() {
+        return (
+          <table className="productList">
+              <tbody>
+                  <ProductTableHeader></ProductTableHeader>
+              </tbody>
+              {this.renderProductList()}
+          </table>
+        )
+    }
+}
+
+ProductsList.propTypes = {
+    data: PropTypes.array.isRequired
 }
 
 class BigApp extends React.Component {
