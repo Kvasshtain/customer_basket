@@ -21,20 +21,26 @@ const products = [
     }
 ];
 
-class ProductTableHeader extends React.Component {
-    render() {
-        return (
-            <tr>
-                <th className = "tableCell">Name</th>
-                <th className = "tableCell">Price</th>
-                <th className = "tableCell">Count</th>
-                <th className = "tableCell"></th>
-            </tr>
-        )
-    }
+const ProductTableHeader = () => {
+    return (
+        <tr>
+            <th className = "tableCell">Name</th>
+            <th className = "tableCell">Price</th>
+            <th className = "tableCell">Count</th>
+            <th className = "tableCell"></th>
+        </tr>
+    )
 }
 
 class Product extends React.Component {
+    state = {
+        count: 0,
+    }
+
+    addButtonClick = (e) => {
+        this.setState({count: this.state.count + 1});
+    }
+
     render() {
         const {id, name, price, count} = this.props.data;
 
@@ -42,9 +48,9 @@ class Product extends React.Component {
             <tr>
                 <td className = "tableCell">{name}</td>
                 <td className = "tableCell">{price}</td>
-                <td className = "tableCell">{count}</td>
+                <td className = "tableCell">{this.state.count}</td>
                 <th className = "tableCell">
-                    <button className = "button">+</button>
+                    <button className = "button" onClick={this.addButtonClick}>+</button>
                 </th>
             </tr>
         )
@@ -72,7 +78,8 @@ class ProductsList extends React.Component {
                     </tbody>
                 )
             })
-        } else {
+        }
+        else {
             return ProductsListTemplate = <p>Products is empty</p>
         }
     }
