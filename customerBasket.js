@@ -5,19 +5,19 @@ const products = [
         id: '1',
         name: 'apple',
         price: '$0.1',
-        count: '10',
+        count: 10,
     },
     {
         id: '2',
         name: 'pear',
         price: '$0.15',
-        count: '5',
+        count: 5,
     },
     {
         id: '3',
         name: 'tomatoes',
         price: '$0.12',
-        count: '15',
+        count: 15,
     }
 ];
 
@@ -33,12 +33,14 @@ const ProductTableHeader = () => {
 }
 
 class Product extends React.Component {
-    state = {
-        count: 0,
+
+    constructor(props) {
+        super(props);
+        this.addButtonClkHandler = this.addButtonClkHandler.bind(this);
     }
 
-    addButtonClick = (e) => {
-        this.setState({count: this.state.count + 1});
+    addButtonClkHandler(e) {
+        this.props.onCountChange(this.props.data.id);
     }
 
     render() {
@@ -48,9 +50,9 @@ class Product extends React.Component {
             <tr>
                 <td className = "tableCell">{name}</td>
                 <td className = "tableCell">{price}</td>
-                <td className = "tableCell">{this.state.count}</td>
+                <td className = "tableCell">{count}</td>
                 <th className = "tableCell">
-                    <button className = "button" onClick={this.addButtonClick}>+</button>
+                    <button className = "button" onClick = {this.addButtonClkHandler}>+</button>
                 </th>
             </tr>
         )
@@ -61,20 +63,22 @@ Product.propTypes = {
     data: PropTypes.shape({
         name: PropTypes.string,
         price: PropTypes.string,
-        count: PropTypes.string,
+        count: PropTypes.number,
+        onCountChange : PropTypes.func,
     })
 }
 
 class ProductsList extends React.Component {
+
     renderProductList = () => {
-        const { data } = this.props;
+        const {data, onCountChange} = this.props;
         let ProductsListTemplate = null;
 
         if (data.length) {
             return ProductsListTemplate = this.props.data.map(function(item, index) {
                 return (
                     <tbody key = {item.id}>
-                    <Product data = {item}/>
+                    <Product data = {item} onCountChange = {onCountChange}/>
                     </tbody>
                 )
             })
@@ -101,11 +105,26 @@ ProductsList.propTypes = {
 }
 
 class BigApp extends React.Component {
+    state = {
+        products: products
+    }
+
+    onCountChange = (id) => {
+        this.setState(
+            {products: this.state.products.map(function(product){
+                if(product.id === id){
+                    product.count++;
+                }
+                return product;
+            })}
+            );
+    }
+
     render() {
         return (
             <React.Fragment>
               <h1>Products list</h1>
-                <ProductsList data = {products}/>
+                <ProductsList data = {products} onCountChange = {this.onCountChange}/>
             </React.Fragment>
         )
     }
