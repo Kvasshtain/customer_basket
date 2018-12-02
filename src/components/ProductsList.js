@@ -24,7 +24,7 @@ class Product extends React.Component {
         return (
             <tr>
                 <td className = "tableCell">{name}</td>
-                <td className = "tableCell">{price}</td>
+                <td className = "tableCell">${price}</td>
                 <td className = "tableCell">{count}</td>
                 <th className = "tableCell">
                     <button className = "button" onClick = {this.addButtonClkHandler}>+</button>
@@ -37,7 +37,7 @@ class Product extends React.Component {
 Product.propTypes = {
     data: PropTypes.shape({
         name: PropTypes.string,
-        price: PropTypes.string,
+        price: PropTypes.number,
         count: PropTypes.number,
         onCountIncrement : PropTypes.func,
     })

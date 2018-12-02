@@ -13,6 +13,21 @@ const BasketTableHeader = () => {
     )
 }
 
+class Total extends React.Component {
+
+    calcTotal = (data) => {
+        return data.reduce(function (sum, current) {
+            return sum + current.price * current.count
+        },0)
+    }
+
+    render() {
+        return (
+            <p>Total: ${this.calcTotal(this.props.data)}</p>
+        )
+    }
+}
+
 class BasketProduct extends React.Component {
 
     addButtonClkHandler = () => {
@@ -29,7 +44,7 @@ class BasketProduct extends React.Component {
         return (
             <tr>
                 <td className = "tableCell">{name}</td>
-                <td className = "tableCell">{price}</td>
+                <td className = "tableCell">${price}</td>
                 <td className = "tableCell">{count}</td>
                 <th className = "tableCell">
                     <button className = "button" onClick = {this.addButtonClkHandler}>-</button>
@@ -45,7 +60,7 @@ class BasketProduct extends React.Component {
 BasketProduct.propTypes = {
     data: PropTypes.shape({
         name: PropTypes.string,
-        price: PropTypes.string,
+        price: PropTypes.number,
         count: PropTypes.number,
         onCountDecrement : PropTypes.func,
         onClearCount : PropTypes.func,
@@ -74,12 +89,16 @@ class BasketList extends React.Component {
 
     render() {
         return (
-            <table className="productList">
-                <tbody>
-                <BasketTableHeader/>
-                </tbody>
-                {this.renderBasketList()}
-            </table>
+            <React.Fragment>
+                <table className="productList">
+                    <tbody>
+                        <BasketTableHeader/>
+                    </tbody>
+                    {this.renderBasketList()}
+                </table>
+                <Total data = {this.props.data}/>
+
+            </React.Fragment>
         )
     }
 }

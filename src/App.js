@@ -9,6 +9,7 @@ class App extends Component {
     state = {
         showBasket : false,
         products : products.map(function (product) {
+            product.price = +product.price;
             product.count = +product.count;
             return product;
         })
