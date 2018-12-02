@@ -1,28 +1,89 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {ProductsList} from './components/ProductsList'
+import {BasketList} from './components/BasketList'
+import products from './data/products.json'
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    state = {
+        showBasket : false,
+        products : products.map(function (product) {
+            product.count = +product.count;
+            return product;
+        })
+    }
+
+    onCountIncrement = (id) => {
+        this.setState(
+            {products: this.state.products.map(function(product){
+                if(product.id === id){
+                    product.count++;
+                }
+                return product;
+            })}
+        );
+    }
+
+    updateProducts = (id, action) => {
+        this.setState(
+            {products: this.state.products.map(function(product){
+                if(product.id === id){
+                    action(product);
+                }
+                return product;
+            })}
+        );
+    }
+
+    onCountDecrement = (id) => {
+        this.updateProducts(id, (product) => {product.count--})
+    }
+
+    onClearCount = (id) => {
+        this.updateProducts(id, (product) => {product.count = 0})
+    }
+
+    basketButtonClkHandler = () => {
+        this.setState({showBasket : true});
+    }
+
+    productListButtonClkHandler = () => {
+        this.setState({showBasket : false});
+    }
+
+    clearBasketButtonClkHandler = () => {
+        this.setState(
+            {products: this.state.products.map(function(product){
+                product.count = 0;
+                return product;
+            })}
+        );
+    }
+
+    render() {
+        if(this.state.showBasket){
+            return (
+                <React.Fragment>
+                  <h1>Basket</h1>
+                  <BasketList data = {products}
+                              onCountDecrement = {this.onCountDecrement}
+                              onClearCount = {this.onClearCount}
+                  />
+                  <button className = "button" onClick = {this.productListButtonClkHandler}>Products list</button>
+                  <button className = "button" onClick = {this.clearBasketButtonClkHandler}>Clear basket</button>
+                </React.Fragment>
+            )
+        }
+
+        return (
+            <React.Fragment>
+              <h1>Products list</h1>
+              <ProductsList data = {products} onCountIncrement = {this.onCountIncrement}/>
+              <button className = "button" onClick = {this.basketButtonClkHandler}>Basket</button>
+            </React.Fragment>
+        )
+    }
 }
 
 export default App;
