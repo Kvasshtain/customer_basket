@@ -5,20 +5,38 @@ const products = [
         id: '1',
         name: 'apple',
         price: '$0.1',
-        count: 10,
+        count: 0,
     },
     {
         id: '2',
         name: 'pear',
         price: '$0.15',
-        count: 5,
+        count: 0,
     },
     {
         id: '3',
         name: 'tomatoes',
         price: '$0.12',
-        count: 15,
-    }
+        count: 0,
+    },
+    {
+        id: '4',
+        name: 'cucumber',
+        price: '$0.11',
+        count: 0,
+    },
+    {
+        id: '5',
+        name: 'watermelon',
+        price: '$0.2',
+        count: 0,
+    },
+    {
+        id: '6',
+        name: 'melon',
+        price: '$0.25',
+        count: 0,
+    },
 ];
 
 //=============Product list============
@@ -36,16 +54,12 @@ const ProductTableHeader = () => {
 
 class Product extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-    addButtonClkHandler = (e) => {
+    addButtonClkHandler = () => {
         this.props.onCountIncrement(this.props.data.id);
     }
 
     render() {
-        const {id, name, price, count} = this.props.data;
+        const {name, price, count} = this.props.data;
 
         return (
             <tr>
@@ -121,19 +135,16 @@ const BasketTableHeader = () => {
 
 class BasketProduct extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-    addButtonClkHandler = (e) => {
+    addButtonClkHandler = () => {
         this.props.onCountDecrement(this.props.data.id);
     }
 
-    clearButtonClkHandler = (e) => {
+    clearButtonClkHandler = () => {
         this.props.onClearCount(this.props.data.id);
     }
+
     render() {
-        const {id, name, price, count} = this.props.data;
+        const {name, price, count} = this.props.data;
 
         return (
             <tr>
@@ -164,7 +175,7 @@ Product.propTypes = {
 class BasketList extends React.Component {
 
     renderBasketList = () => {
-        const {data, onCountDecrement, onClearCount} = this.props;
+        const {onCountDecrement, onClearCount} = this.props;
         let basketListTemplate = this.props.data
             .filter(item => item.count)
             .map(function(item) {
@@ -178,11 +189,7 @@ class BasketList extends React.Component {
                 )
         });
 
-        if (basketListTemplate.length) {
-            return basketListTemplate;
-        }
-
-        return <p>Products list is empty</p>
+        return basketListTemplate;
     }
 
     render() {
@@ -217,48 +224,37 @@ class BigApp extends React.Component {
                 }
                 return product;
             })}
-            );
+        );
+    }
+
+    updateProducts = (id, action) => {
+        this.setState(
+            {products: this.state.products.map(function(product){
+                if(product.id === id){
+                    action(product);
+                }
+                return product;
+            })}
+        );
     }
 
     onCountDecrement = (id) => {
-        this.setState(
-            {products: this.state.products.map(function(product){
-                if(product.id === id){
-                    product.count--;
-                }
-                return product;
-            })}
-        );
+        this.updateProducts(id, (product) => {product.count--})
     }
 
     onClearCount = (id) => {
-        this.setState(
-            {products: this.state.products.map(function(product){
-                if(product.id === id){
-                    product.count = 0;
-                }
-                return product;
-            })}
-        );
+        this.updateProducts(id, (product) => {product.count = 0})
     }
 
-    basketButtonClkHandler = (e) => {
-        this.setState(
-            {
-                showBasket : true
-            }
-        );
+    basketButtonClkHandler = () => {
+        this.setState({showBasket : true});
     }
 
-    productListButtonClkHandler = (e) => {
-        this.setState(
-            {
-                showBasket : false
-            }
-        );
+    productListButtonClkHandler = () => {
+        this.setState({showBasket : false});
     }
 
-    clearBasketButtonClkHandler = (e) => {
+    clearBasketButtonClkHandler = () => {
         this.setState(
             {products: this.state.products.map(function(product){
                 product.count = 0;
@@ -281,6 +277,7 @@ class BigApp extends React.Component {
                 </React.Fragment>
             )
         }
+
         return (
             <React.Fragment>
                 <h1>Products list</h1>
