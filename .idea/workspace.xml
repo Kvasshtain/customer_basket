@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee452077-c481-42a4-9d01-f2f9af2eacc3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/BasketList.js" afterPath="$PROJECT_DIR$/src/components/BasketList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/ProductsList.js" afterPath="$PROJECT_DIR$/src/components/ProductsList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/data/products.json" afterPath="$PROJECT_DIR$/src/data/products.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,8 +29,8 @@
       <file leaf-file-name="BasketList.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/BasketList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+            <state relative-caret-position="-1102">
+              <caret line="23" column="14" lean-forward="true" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -275,12 +272,12 @@
       <workItem from="1543423809661" duration="6507000" />
       <workItem from="1543508408617" duration="5284000" />
       <workItem from="1543590847096" duration="277000" />
-      <workItem from="1543747348835" duration="12431000" />
+      <workItem from="1543747348835" duration="12979000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39587000" />
+    <option name="totallyTimeSpent" value="40135000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
@@ -590,8 +587,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/BasketList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+        <state relative-caret-position="-1102">
+          <caret line="23" column="14" lean-forward="true" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>

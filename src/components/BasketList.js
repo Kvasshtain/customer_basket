@@ -23,7 +23,7 @@ class Total extends React.Component {
 
     render() {
         return (
-            <p>Total: ${this.calcTotal(this.props.data)}</p>
+            <p>Total: ${this.calcTotal(this.props.data).toFixed(2)}</p>
         )
     }
 }
