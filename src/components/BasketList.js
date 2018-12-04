@@ -4,11 +4,9 @@ import PropTypes from 'prop-types'
 const BasketTableHeader = () => {
     return (
         <tr>
-            <th className = "tableCell">Name</th>
-            <th className = "tableCell">Price</th>
-            <th className = "tableCell">Count</th>
-            <th className = "tableCell"></th>
-            <th className = "tableCell"></th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Count</th>
         </tr>
     )
 }
@@ -43,15 +41,15 @@ class BasketProduct extends React.Component {
 
         return (
             <tr>
-                <td className = "tableCell">{name}</td>
-                <td className = "tableCell">${price}</td>
-                <td className = "tableCell">{count}</td>
-                <th className = "tableCell">
-                    <button className = "button" onClick = {this.addButtonClkHandler}>-</button>
-                </th>
-                <th className = "tableCell">
-                    <button className = "button" onClick = {this.clearButtonClkHandler}>Clear all</button>
-                </th>
+                <td>{name}</td>
+                <td>${price}</td>
+                <td>{count}</td>
+                <td>
+                    <button onClick = {this.addButtonClkHandler}>-</button>
+                </td>
+                <td>
+                    <button onClick = {this.clearButtonClkHandler}>Clear all</button>
+                </td>
             </tr>
         )
     }
@@ -89,8 +87,8 @@ class BasketList extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
-                <table className="productList">
+            <div className = "tableBorder">
+                <table>
                     <tbody>
                         <BasketTableHeader/>
                     </tbody>
@@ -98,7 +96,7 @@ class BasketList extends React.Component {
                 </table>
                 <Total data = {this.props.data}/>
 
-            </React.Fragment>
+            </div>
         )
     }
 }

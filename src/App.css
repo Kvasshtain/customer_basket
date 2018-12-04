@@ -1,15 +1,74 @@
-.productList {
-    margin: 5px;
-    border : 5px;
-    width : 100%;
+h1 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 30px;
+    margin: 10px;
+    color: #000066;
 }
 
-.tableCell {
-    padding: 3px;
-    border: 1px solid maroon;
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 20px;
+    border-collapse: collapse;
+    text-align: center;
+    width: 95%;
+    margin: 10px;
+}
+
+p {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 20px;
+    margin: 10px;
+}
+
+th, td:first-child {
+    background: #AFCDE7;
+    padding: 10px 20px;
+}
+
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+
+td {
+    background: #D8E6F3;
+}
+
+th:first-child, td:first-child {
     text-align: left;
 }
 
-.button {
+button {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-weight: 700;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: #AFCDE7;
+    box-shadow: 0 -3px #AFCDE7 inset;
+    transition: 0.2s;
+    margin: 10px;
+}
+
+td > button {
+    margin: 0px;
+    height: 100%;
     width: 100%;
+}
+
+button:hover {
+    background: #D8E6F3;
+}
+
+button:active {
+    background: #6666FF;
+    box-shadow: 0 3px #6666FF inset;
+}
+
+.tableBorder {
+    border: 5px solid #AFCDE7;
+    padding: 5px;
+    margin: 5px;
+    width: 600px;
 }

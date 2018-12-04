@@ -71,8 +71,8 @@ class App extends Component {
                               onCountDecrement = {this.onCountDecrement}
                               onClearCount = {this.onClearCount}
                   />
-                  <button className = "button" onClick = {this.productListButtonClkHandler}>Products list</button>
-                  <button className = "button" onClick = {this.clearBasketButtonClkHandler}>Clear basket</button>
+                  <button onClick = {this.productListButtonClkHandler}>Products list</button>
+                  <button onClick = {this.clearBasketButtonClkHandler}>Clear basket</button>
                 </React.Fragment>
             )
         }
@@ -81,7 +81,7 @@ class App extends Component {
             <React.Fragment>
               <h1>Products list</h1>
               <ProductsList data = {products} onCountIncrement = {this.onCountIncrement}/>
-              <button className = "button" onClick = {this.basketButtonClkHandler}>Basket</button>
+              <button onClick = {this.basketButtonClkHandler}>Basket</button>
             </React.Fragment>
         )
     }
