@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import {ProductsList} from './components/ProductsList'
 import {BasketList} from './components/BasketList'
-import products from './data/products.json'
+import jsonProducts from './data/products.json'
+import textStrings from './data/textStrings.json'
 import './App.css';
+
+let products = jsonProducts.map(function (product) {
+    product.price = +product.price;
+    product.count = +product.count;
+    return product;
+});
 
 class App extends Component {
 
     state = {
         showBasket : false,
-        products : products.map(function (product) {
-            product.price = +product.price;
-            product.count = +product.count;
-            return product;
-        })
+        products : products
     }
 
     onCountIncrement = (id) => {
@@ -66,13 +69,13 @@ class App extends Component {
         if(this.state.showBasket){
             return (
                 <React.Fragment>
-                  <h1>Basket</h1>
+                  <h1>{textStrings.basket}</h1>
                   <BasketList data = {products}
                               onCountDecrement = {this.onCountDecrement}
                               onClearCount = {this.onClearCount}
                   />
-                  <button onClick = {this.productListButtonClkHandler}>Products list</button>
-                  <button onClick = {this.clearBasketButtonClkHandler}>Clear basket</button>
+                  <button onClick = {this.productListButtonClkHandler}>{textStrings.productsList}</button>
+                  <button onClick = {this.clearBasketButtonClkHandler}>{textStrings.clearBasket}</button>
                 </React.Fragment>
             )
         }
@@ -81,7 +84,7 @@ class App extends Component {
             <React.Fragment>
               <h1>Products list</h1>
               <ProductsList data = {products} onCountIncrement = {this.onCountIncrement}/>
-              <button onClick = {this.basketButtonClkHandler}>Basket</button>
+              <button onClick = {this.basketButtonClkHandler}>{textStrings.basket}</button>
             </React.Fragment>
         )
     }

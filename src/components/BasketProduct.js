@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import textStrings from '../data/textStrings.json'
 
 class BasketProduct extends React.Component {
 
@@ -20,10 +21,10 @@ class BasketProduct extends React.Component {
                 <td>${price}</td>
                 <td>{count}</td>
                 <td>
-                    <button onClick = {this.addButtonClkHandler}>-</button>
+                    <button onClick = {this.addButtonClkHandler}>{textStrings.minus}</button>
                 </td>
                 <td>
-                    <button onClick = {this.clearButtonClkHandler}>Clear all</button>
+                    <button onClick = {this.clearButtonClkHandler}>{textStrings.clearAll}</button>
                 </td>
             </tr>
         )

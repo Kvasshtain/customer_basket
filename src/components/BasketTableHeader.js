@@ -1,11 +1,12 @@
 import React from 'react'
+import textStrings from '../data/textStrings.json'
 
 const BasketTableHeader = () => {
     return (
         <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Count</th>
+            <th>{textStrings.name}</th>
+            <th>{textStrings.price}</th>
+            <th>{textStrings.count}</th>
         </tr>
     )
 }

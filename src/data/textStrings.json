@@ -1,0 +1,11 @@
+{
+  "productsList": "Products list",
+  "basket": "Basket",
+  "clearBasket": "Clear basket",
+  "name": "Name",
+  "price": "Price",
+  "count": "Count",
+  "plus": "+",
+  "minus": "-",
+  "clearAll": "Clear all"
+}
