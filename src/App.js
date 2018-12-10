@@ -15,7 +15,9 @@ class App extends Component {
 
     state = {
         showBasket : false,
-        products : products
+        products : products,
+        visibleProducts : products,
+        filterValue : ''
     }
 
     onCountIncrement = (id) => {
@@ -25,6 +27,21 @@ class App extends Component {
                     product.count++;
                 }
                 return product;
+            })}
+        );
+    }
+
+    onTextChange = (value) => {
+        this.setState({filterValue: value});
+
+        if(value === '') {
+            this.setState({visibleProducts: this.state.products});
+            return;
+        }
+
+        this.setState(
+            {visibleProducts: this.state.products.filter(function(product){
+                return product.name.includes(value)
             })}
         );
     }
@@ -83,7 +100,12 @@ class App extends Component {
         return (
             <React.Fragment>
               <h1>Products list</h1>
-              <ProductsList data = {products} onCountIncrement = {this.onCountIncrement}/>
+              <ProductsList
+                  data = {this.state.visibleProducts}
+                  onCountIncrement = {this.onCountIncrement}
+                  onTextChange = {this.onTextChange}
+                  filterValue = {this.state.filterValue}
+              />
               <button onClick = {this.basketButtonClkHandler}>{textStrings.basket}</button>
             </React.Fragment>
         )

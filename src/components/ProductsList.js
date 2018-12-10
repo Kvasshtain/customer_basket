@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {ProductTableHeader} from './ProductsTableHeader'
 import {Product} from './Product'
+import {ProductFinder} from './ProductFinder'
 
 class ProductsList extends React.Component {
 
@@ -18,11 +19,19 @@ class ProductsList extends React.Component {
             })
         }
         else {
-            return <p>Products list is empty</p>
+            return (
+                <tbody>
+                    <tr>
+                        <td>Products list is empty</td>
+                    </tr>
+                </tbody>
+            )
         }
     }
 
     render() {
+        const {onTextChange, filterValue} = this.props;
+
         return (
             <div className = "tableBorder">
                 <table>
@@ -31,6 +40,10 @@ class ProductsList extends React.Component {
                     </tbody>
                     {this.renderProductList()}
                 </table>
+                <ProductFinder
+                    onTextChange = {onTextChange}
+                    filterValue = {filterValue}
+                ></ProductFinder>
             </div>
         )
     }

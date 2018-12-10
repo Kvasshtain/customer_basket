@@ -7,5 +7,7 @@
   "count": "Count",
   "plus": "+",
   "minus": "-",
-  "clearAll": "Clear all"
+  "clearAll": "Clear all",
+  "clearFilter": "clear filter",
+  "enterProductName": "Enter product name: "
 }

@@ -72,3 +72,10 @@ button:active {
     margin: 5px;
     width: 600px;
 }
+
+input {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 20px;
+    margin: 10px;
+    height: 35px;
+}
